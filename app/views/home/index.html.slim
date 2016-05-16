@@ -1,1 +1,41 @@
-img src="https://trello-attachments.s3.amazonaws.com/57329c69996366ad574055a3/490x394/18657c16548eb73d3fbc2dc39cb3454e/logo.png" style="margin: 0 auto; display: block;"
+.main
+	.row
+	  .map.col-md-9
+	  	#map style=("width: 100%; height: 840px;") 
+	  .left-bar.col-md-3
+	  	.filters
+	  		h3
+	  			| Localidad
+		  	.select-style
+		  		select#localities
+		  		  option value="-34.5711;-58.4233"  Palermo
+		  		  option value="-34.5895;-58.3974"  Recoleta
+		  		  option value="-34.6177;-58.3621"  Puerto Madero
+		  		  option value="-34.6212;-58.3731"  San Telmo
+	  		h3
+	  			| Tipo de denuncia
+		  	.select-style
+		  		select
+		  		  option value="bache"  Bache
+		  		  option value="alumbrado"  Alumbrado
+		  		  option value="pintura"  Pintura
+	  		h3
+	  			| Resueltas?
+		  	.select-style
+		  		select
+		  		  option value="si"  Si
+		  		  option value="no"  No
+	  	
+	  	hr
+	  	.denounces
+	  		h3
+	  			| Denuncias
+	  		.list
+		  		= render 'list_item'
+		  		= render 'list_item'
+		  		= render 'list_item'
+		  		= render 'list_item'
+		  		= render 'list_item'
+		  		= render 'list_item'
+		  		= render 'list_item'
+		  		= render 'list_item'         
