@@ -31,11 +31,6 @@
 	  		h3
 	  			| Denuncias
 	  		.list
-		  		= render 'list_item'
-		  		= render 'list_item'
-		  		= render 'list_item'
-		  		= render 'list_item'
-		  		= render 'list_item'
-		  		= render 'list_item'
-		  		= render 'list_item'
-		  		= render 'list_item'         
+		  		- @complaints.each do |c|
+		  			= render 'list_item', complaint: c
+		  		
