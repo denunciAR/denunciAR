@@ -1,10 +1,6 @@
 .list-item
   h4
-		| Tipo de denuncia
+		= complaint.user
   row
-		.col-md-4
-			| Nombre
-		.col-md-4
-			| Localidad
-		.col-md-4
-			| Estado
+		.col-md-12
+			= complaint.text

@@ -84,6 +84,8 @@ gem 'newrelic_rpm'
 gem 'compass-rails'
 gem 'chosen-rails'
 
+gem 'twitter'
+
 group :development do
   # Gem to detect N+1 queries
   gem 'bullet'
