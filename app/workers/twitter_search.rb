@@ -1,4 +1,6 @@
 class TwitterSearch
+  include Sidekiq::Worker
+  sidekiq_options queue: :twitter
 
   def perform
     twitter = twitter_client
@@ -11,8 +13,6 @@ class TwitterSearch
     Twitter::REST::Client.new do |config|
       config.consumer_key = Rails.application.secrets.twitter_app_id
       config.consumer_secret = Rails.application.secrets.twitter_app_secret
-      config.access_token = Rails.application.secrets.twitter_acces_token
-      config.access_token_secret = Rails.application.secrets.twitter_acces_secret
     end
   end
 
