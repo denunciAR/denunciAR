@@ -42,3 +42,13 @@
 .no-margin-bot{
   margin-bottom: 0px !important;
 }
+
+.social-media{
+  width: 35px;
+  margin-top: 7px;
+  display: inline-block;
+}
+
+.title{
+  color: #66c4e9;
+}
