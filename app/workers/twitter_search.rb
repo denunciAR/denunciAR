@@ -3,8 +3,7 @@ class TwitterSearch
   sidekiq_options queue: :twitter
 
   def perform
-    twitter = twitter_client
-    twitter.search("@denunci_AR", result_type: "recent").collect do |tweet|
+    twitter_client.search("@denunci_AR", result_type: "recent").collect do |tweet|
       Complaint.create!(user: tweet.user.name, user_id: tweet.user.id, tweet_id: tweet.id, text: tweet.text, rating: 0, complained_at: tweet.created_at)
     end
   end
