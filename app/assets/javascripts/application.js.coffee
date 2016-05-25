@@ -14,10 +14,39 @@
 #= require bootstrap-sprockets
 #= require chosen-jquery
 #= require turbolinks
+#= require underscore
+#= require gmaps/google
 #= require_tree .
 
-$(document).ready ->
-	map = undefined
+handler = Gmaps.build('Google')
+handler.buildMap { internal: id: 'multi_markers' }, ->
+  markers = handler.addMarkers([
+    {
+      lat: 43
+      lng: 3.5
+    }
+    {
+      lat: 45
+      lng: 4
+    }
+    {
+      lat: 47
+      lng: 3.5
+    }
+    {
+      lat: 49
+      lng: 4
+    }
+    {
+      lat: 51
+      lng: 3.5
+    }
+  ])
+  handler.bounds.extendWith markers
+  handler.fitMapToBounds()
+  return
+###
+  	map = undefined
 	initMap = ->
 	  map = new (google.maps.Map)(document.getElementById('map'),
 	    center:
@@ -50,3 +79,4 @@ $(document).ready ->
 		  map: map
 		  animation: google.maps.Animation.DROP
 		  position: new (google.maps.LatLng)(lat, lng))
+###

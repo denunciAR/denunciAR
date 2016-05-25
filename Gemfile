@@ -86,6 +86,10 @@ gem 'chosen-rails'
 
 gem 'twitter'
 
+gem 'gmaps4rails'
+
+gem 'geocoder'
+
 group :development do
   # Gem to detect N+1 queries
   gem 'bullet'

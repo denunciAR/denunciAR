@@ -42,3 +42,15 @@
 .no-margin-bot{
   margin-bottom: 0px !important;
 }
+
+.filters {
+  padding-left: 80px;
+}
+
+.denounces {
+  padding-left: 80px;
+}
+
+.left-bar {
+  padding-left: 0px;
+}

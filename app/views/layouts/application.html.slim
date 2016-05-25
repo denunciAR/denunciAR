@@ -3,22 +3,21 @@ html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     title DenunciAR
+    //gmap4rails
+    script src="//maps.google.com/maps/api/js?v=3.23&sensor=false&client=&key=&libraries=geometry&language=&hl=&region=" 
+    script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js" 
+    script src="//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" type="text/javascript" 
+
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    
+    
     link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" rel="stylesheet" /
     script crossorigin="anonymous" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
-    javascript:
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.6037, lng: -58.3816},
-          zoom: 15
-        });
-      }
-    script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiaY2wSIWR1TsHRFaAxul-XiIfy5dNDUU&callback=initMap" 
-
 
     = csrf_meta_tags
   body
   	= render 'layouts/header'
+    .left-bar.col-md-9.div[style="width: 800px;padding-left:0px;"]
+      #multi_markers[style="width: 800px; height: 600px;"]
     = yield
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
