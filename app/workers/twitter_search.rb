@@ -4,7 +4,13 @@ class TwitterSearch
 
   def perform
     twitter_client.search("@denunci_AR", result_type: "recent").collect do |tweet|
-      Complaint.create!(user: tweet.user.name, user_id: tweet.user.id, tweet_id: tweet.id, text: tweet.text, rating: 0, complained_at: tweet.created_at)
+      begin
+        Complaint.create!(user: tweet.user.name, user_id: tweet.user.id, tweet_id: tweet.id, text: tweet.text, rating: 0, complained_at: tweet.created_at)
+      rescue ActiveRecord::RecordInvalid => invalid
+        logger.error(
+          "User: #{tweet.user.name} - Tweet ID: #{tweet.id} - Text: #{tweet.text} - Error: #{invalid.record.errors}"
+        )
+end
     end
   end
 
