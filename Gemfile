@@ -86,6 +86,9 @@ gem 'chosen-rails'
 
 gem 'twitter'
 
+# Key value preference storage in ActiveRecord
+gem 'rails-settings-cached'
+
 group :development do
   # Gem to detect N+1 queries
   gem 'bullet'
