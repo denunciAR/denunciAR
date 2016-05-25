@@ -6,7 +6,7 @@ class TwitterSearch
     latest_processed_id = Setting.twitter_latest_processed_id || 0
     twitter_client.search("@denunci_AR", result_type: "recent", since_id: latest_processed_id).collect do |tweet|
       begin
-        Complaint.create!(user: tweet.user.name, user_id: tweet.user.id, tweet_id: tweet.id, text: tweet.text, rating: 0, complained_at: tweet.created_at)
+        ComplaintTweetContext.new(tweet).handle
         latest_processed_id = tweet.id if tweet.id > latest_processed_id
       rescue ActiveRecord::RecordInvalid => error
         logger.error(
@@ -23,5 +23,4 @@ class TwitterSearch
       config.consumer_secret = Rails.application.secrets.twitter_app_secret
     end
   end
-
 end
