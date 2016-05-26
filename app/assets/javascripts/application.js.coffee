@@ -17,7 +17,59 @@
 #= require underscore
 #= require gmaps/google
 #= require_tree .
+createSidebarLi = (json) ->
+  '<li><a>' + json.name + '</a></li>'
 
+bindLiToMarker = ($li, marker) ->
+  $li.on 'click', ->
+    handler.getMap().setZoom 14
+    marker.setMap handler.getMap()
+    #because clusterer removes map property from marker
+    marker.panTo()
+    google.maps.event.trigger marker.getServiceObject(), 'click'
+    return
+  return
+
+createSidebar = (json_array) ->
+  _.each json_array, (json) ->
+    $li = $(createSidebarLi(json))
+    $li.appendTo '#sidebar_container'
+    bindLiToMarker $li, json.marker
+    return
+  return
+
+handler = Gmaps.build('Google')
+handler.buildMap { internal: id: 'sidebar_builder' }, ->
+  json_array = [
+    {
+      lat: -34.5620844
+      lng: -58.4588766
+      name: 'Bache'
+      infowindow: 'Avenida Cabildo y Juramento. Denunciado por @Juan. Estado: Pendiente de resolver. Fecha 11/05/16'
+    }
+    {
+      lat: -34.6307264
+      lng: -58.4718442
+      name: 'Iluminacion'
+      infowindow: 'Avenida Rivadavia y Avenida Nazca. Denunciado por @Maria. Estado: Resuelto. Fecha: 18/05/16'
+    }
+    {
+      lat: -34.6412239
+      lng: -58.5496334
+      name: 'Obra sin permiso'
+      infowindow: 'Diaz Velez 123. Denunciado por @Roberto. Estado: Pendiente de resolver. Se han sumado 47 personas a este pedido. Fecha: 1/3/16'
+    }
+  ]
+  markers = handler.addMarkers(json_array)
+  _.each json_array, (json, index) ->
+    json.marker = markers[index]
+    return
+  createSidebar json_array
+  handler.bounds.extendWith markers
+  handler.fitMapToBounds()
+  return
+
+###
 handler = Gmaps.build('Google')
 handler.buildMap { internal: id: 'multi_markers' }, ->
   markers = handler.addMarkers([
@@ -43,9 +95,10 @@ handler.buildMap { internal: id: 'multi_markers' }, ->
     }
   ])
   handler.bounds.extendWith markers
+  handler.bounds
   handler.fitMapToBounds()
   return
-###
+
   	map = undefined
 	initMap = ->
 	  map = new (google.maps.Map)(document.getElementById('map'),

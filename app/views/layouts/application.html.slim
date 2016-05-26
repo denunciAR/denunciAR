@@ -18,6 +18,7 @@ html
   body
   	= render 'layouts/header'
     .left-bar.col-md-9.div[style="width: 800px;padding-left:0px;"]
-      #multi_markers[style="width: 800px; height: 600px;"]
+      #sidebar_builder[style="width: 800px; height: 600px;"]
+
     = yield
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
