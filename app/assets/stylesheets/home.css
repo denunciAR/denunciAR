@@ -42,3 +42,12 @@
 .no-margin-bot{
   margin-bottom: 0px !important;
 }
+
+.rating {
+  display: inline-block;
+}
+
+.tweet-name{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+}

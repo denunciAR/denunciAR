@@ -1,6 +1,13 @@
 .list-item
-  h4
-		= complaint.user
+  row
+    .col-md-6
+      .tweet-name
+        = complaint.user
+    .col-md-6
+      button.endorse.btn.btn-success type="button" data-index="#{complaint.id}"
+        | Adherir
+      .rating name="#{complaint.rating}"
+        = complaint.rating
   row
 		.col-md-12
 			= complaint.text
